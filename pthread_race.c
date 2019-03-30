@@ -7,20 +7,20 @@
 /**
  * THESE DEFINE VALUES CANNOT BE CHANGED.
  * DOING SO WILL CAUSE POINTS TO BE DEDUCTED
- * FROM YOUR GRADE (15 points)
+ * FROM YOUR GRADE
  */
  /** BEGIN VALUES THAT CANNOT BE CHANGED */
-#define MAX_THREADS 16
-#define MAX_ITERATIONS 40
+#define MAX_THREADS 36
+#define MAX_ITERATIONS 22
 /** END VALUES THAT CANNOT BE CHANGED */
 
 
 /**
- * use this struct as a parameter for the function
- * nanosleep. 
+ * use this struct as a parameter for the
+ * nanosleep function.
  * For exmaple : nanosleep(&ts, NULL);
  */
-struct timespec ts = {0, 123456};
+struct timespec ts = {0, 150000};
 
 
 int
