@@ -57,10 +57,6 @@ int main(int argc, char** argv) {
     for (i = 0; i < MAX_THREADS; i++) {
         int idx = i;
         pthread_create(&ids[i], NULL, add_thread_func, (void*) &idx);
-    }
-
-    for (i = 0; i < MAX_THREADS; i++) {
-        int idx = i;
         pthread_create(&ids[i], NULL, sub_thread_func, (void*) &idx);
     }
 
@@ -68,7 +64,7 @@ int main(int argc, char** argv) {
         pthread_join(ids[i], NULL);
     }
 
-    printf("Final Value of Shared Variable : %d", global_value);
+    printf("Final Value of Shared Variable : %d\n", global_value);
 
     return 0;
 }
