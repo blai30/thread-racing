@@ -57,6 +57,10 @@ int main(int argc, char** argv) {
     for (i = 0; i < MAX_THREADS; i++) {
         int idx = i;
         pthread_create(&ids[i], NULL, add_thread_func, (void*) &idx);
+    }
+
+    for (i = 0; i < MAX_THREADS; i++) {
+        int idx = i;
         pthread_create(&ids[i], NULL, sub_thread_func, (void*) &idx);
     }
 
