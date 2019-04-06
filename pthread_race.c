@@ -28,8 +28,10 @@ void* add_thread_func(void* arg) {
     for (int i = 0; i < MAX_ITERATIONS; i++) {
         int tid = *((int*) arg);
         int temp = global_value;
+
         temp += 10;
         global_value = temp;
+
         printf("Current Value written to Global Variables by ADDER thread id: %d is %d\n", tid, temp);
         nanosleep(&ts, NULL);
     }
@@ -39,8 +41,10 @@ void* sub_thread_func(void* arg) {
     for (int i = 0; i < MAX_ITERATIONS; i++) {
         int tid = *((int *) arg);
         int temp = global_value;
+
         temp -= 10;
         global_value = temp;
+
         printf("Current Value written to Global Variables by SUBTRACTOR thread id: %d is %d\n", tid, temp);
         nanosleep(&ts, NULL);
     }
