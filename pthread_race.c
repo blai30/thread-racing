@@ -29,14 +29,14 @@ void* thread_func(void* arg) {
 
 int main(int argc, char** argv) {
     pthread_t ids[10];
-    int i;
 
-    for(i = 0; i < 10; i++) {
+    int i;
+    for (i = 0; i < 10; i++) {
         int idx = i;
         pthread_create(&ids[i], NULL, thread_func, (void*) &idx);
     }
 
-    for(i = 0; i < 10; i++) {
+    for (i = 0; i < 10; i++) {
         pthread_join(ids[i], NULL);
     }
 
