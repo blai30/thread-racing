@@ -20,15 +20,14 @@
  * nanosleep function.
  * For exmaple : nanosleep(&ts, NULL);
  */
-struct timespec ts = {0, 150000};
+struct timespec ts = {0, 300000000};   // default: {0, 150000}
 
 int global_value = 0;
 
 void* add_thread_func(void* arg) {
+    int tid = *((int*) arg);
     for (int i = 0; i < MAX_ITERATIONS; i++) {
-        int tid = *((int*) arg);
         int temp = global_value;
-
         temp += 10;
         global_value = temp;
 
@@ -38,10 +37,9 @@ void* add_thread_func(void* arg) {
 }
 
 void* sub_thread_func(void* arg) {
+    int tid = *((int *) arg);
     for (int i = 0; i < MAX_ITERATIONS; i++) {
-        int tid = *((int *) arg);
         int temp = global_value;
-
         temp -= 10;
         global_value = temp;
 
@@ -54,9 +52,13 @@ int main(int argc, char** argv) {
     pthread_t ids[MAX_THREADS];
 
     int i;
-    for (i = 0; i < MAX_THREADS; i++) {
+    for (i = 0; i < MAX_THREADS; i += 2) {
         int idx = i;
         pthread_create(&ids[i], NULL, add_thread_func, (void*) &idx);
+    }
+
+    for (i = 1; i < MAX_THREADS; i += 2) {
+        int idx = i;
         pthread_create(&ids[i], NULL, sub_thread_func, (void*) &idx);
     }
 
