@@ -20,17 +20,15 @@
  * nanosleep function.
  * For exmaple : nanosleep(&ts, NULL);
  */
-struct timespec ts = {0, 30000000};   // default: {0, 150000}
+struct timespec ts = {0, 150000};   // default: {0, 150000}
 
 int global_value = 0;
 
 void* add_thread_func(void* arg) {
     int tid = *((int*) arg);
     for (int i = 0; i < MAX_ITERATIONS; i++) {
-        nanosleep(&ts, NULL);
         int temp = global_value;
         temp += 10;
-        nanosleep(&ts, NULL);
         global_value = temp;
 
         printf("Current Value written to Global Variables by ADDER thread id: %d is %d\n", tid, temp);
@@ -44,7 +42,6 @@ void* sub_thread_func(void* arg) {
         int temp = global_value;
         nanosleep(&ts, NULL);
         temp -= 10;
-        nanosleep(&ts, NULL);
         global_value = temp;
 
         printf("Current Value written to Global Variables by SUBTRACTOR thread id: %d is %d\n", tid, temp);
@@ -70,7 +67,11 @@ int main(int argc, char** argv) {
         pthread_join(ids[i], NULL);
     }
 
-    printf("Final Value of Shared Variable : %d\n", global_value);
+    fprintf(stderr, "Final Value of Shared Variable : %4d\n", global_value);
+
+    if (global_value == 0) {
+        fprintf(stderr, "FAILED, global_value = %4d\n", global_value);
+    }
 
     return 0;
 }
