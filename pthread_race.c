@@ -69,9 +69,5 @@ int main(int argc, char** argv) {
 
     fprintf(stderr, "Final Value of Shared Variable : %4d\n", global_value);
 
-    if (global_value == 0) {
-        fprintf(stderr, "FAILED, global_value = %4d\n", global_value);
-    }
-
     return 0;
 }
