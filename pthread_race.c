@@ -20,7 +20,7 @@
  * nanosleep function.
  * For exmaple : nanosleep(&ts, NULL);
  */
-struct timespec ts = {0, 150000};   // default: {0, 150000}
+struct timespec ts = {0, 3000000};   // default: {0, 150000}
 
 int global_value = 0;
 
